@@ -82,6 +82,10 @@ client.on ('ready', () => {
       emoji: '🤫',
       hidden: true,
     },
+    {
+      name: 'Moderator',
+      emoji: '💡',
+    },
   ]);
 
 });

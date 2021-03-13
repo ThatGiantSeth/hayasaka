@@ -15,7 +15,7 @@
       "english": "It says here that that comman- Wait. That that? English is stupid. Anyway, that command is currently disabled in this server."
     },
     "MISSING_PERMISSION": {
-      "english": "Sorry, but it seems like you don't have the {PERM} permission required to use this command."
+      "english": "Sorry, but it seems like you don't have permission to use this command."
     },
     "MISSING_ROLES": {
       "english": "Sorry, but your ID says you don't have the role(s) for this command."
@@ -63,7 +63,7 @@
       "english": "I've added role {ROLE} to command {COMMAND}."
     },
     "SYNTAX_ERROR": {
-      "english": " you must have forgotten how to use this command! Try using \"{PREFIX}{COMMAND} {ARGUMENTS}\" instead."
+      "english": " this syntax is incorrect! Try using \"{PREFIX}{COMMAND} {ARGUMENTS}\" instead."
     },
     "NO_DATABASE_FOUND": {
       "english": "I couldn't find a database connection!"
@@ -75,7 +75,7 @@
       "english": "I'm missing the \"Add Reactions\" permission!"
     },
     "EXCEPTION": {
-      "english": "Uh oh! I couldn't run this command! I have reported the error to the developer."
+      "english": "uh oh! I couldn't run this command! I have reported the error to the developer."
     },
     "HELP_MENU": {
       "TITLE": {
