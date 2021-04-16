@@ -3,6 +3,7 @@ module.exports = {
 	category: 'Fun',
 	description: 'Every Tuesday!',
 	cooldown: '3s',
+	ownerOnly: true,
 	callback: ({ message }) => {
 	const Discord = require('discord.js');
 

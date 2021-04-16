@@ -59,6 +59,7 @@ client.on ('ready', () => {
     // ^^^ Show start up warnings
     dbOptions,
     disabledDefaultCommands,
+    testServers: '819442264043946004',
   })
   .setBotOwner('411994450370232321')
   // Set your MongoDB connection path

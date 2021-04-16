@@ -21,7 +21,7 @@
       "english": "Sorry, but your ID says you don't have the role(s) for this command."
     },
     "COOLDOWN": {
-      "english": "Patience is a virtue! You must wait {COOLDOWN} before using that command again."
+      "english": "wait {COOLDOWN} before using that command again or I'll break your nico nico kneecaps!"
     },
     "ENABLE_DISABLE_STATE": {
       "english": "The state must be either \"enable\" or \"disable\"."
