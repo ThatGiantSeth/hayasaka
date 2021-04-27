@@ -1,7 +1,7 @@
 // THIS SECTION ONLY FOR WEB SERVER USE
 const express = require('express');
 const app = express();
-const port = 3000;
+const port = 5523;
 
 app.get('/', (req, res) => res.send('Hayasaka v0.0.10 Beta Webserver Status.... is online I guess! Congratulations??'),
 );
