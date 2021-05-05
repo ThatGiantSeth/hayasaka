@@ -11,7 +11,7 @@ module.exports = {
 	.setColor('#0099ff')
 	.setTitle('Bot Status Page (Click Here)')
 	.setDescription('Save this page in case the bot goes down or requires maintenance')
-  .setURL('https://stats.uptimerobot.com/EWKxNcWVDB/787368094')
+  .setURL('https://hayasaka.statuspage.io/')
 	.setThumbnail('https://i.imgur.com/AxQslRW.jpg')
 	.setFooter(`Hayasaka Bot ${version}`);
 

@@ -61,7 +61,7 @@ client.on ('ready', () => {
     disabledDefaultCommands,
     testServers: '819442264043946004',
   })
-  .setBotOwner('411994450370232321')
+  .setBotOwner(['411994450370232321', '702164630570663992'])
   // Set your MongoDB connection path
   .setMongoPath(process.env.MONGO_URI)
   // Set the default prefix for your bot, it is ! by default
@@ -86,6 +86,10 @@ client.on ('ready', () => {
     {
       name: 'Moderator',
       emoji: '💡',
+    },
+    {
+      name: 'Security',
+      emoji: '🔒',
     },
   ]);
 
