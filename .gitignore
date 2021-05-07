@@ -2,4 +2,5 @@ node_modules
 .env
 templatecommand.txt
 .vsls.json
-eslintrc.json
+.eslintrc.json
+ignoredtemp
