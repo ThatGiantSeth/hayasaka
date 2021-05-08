@@ -12,7 +12,7 @@ module.exports = {
 		const Discord = require('discord.js');
   const time = moment();
   const timeFull = time.format('MMMM Do YYYY, h:mm:ss a');
-  const user = message.mentions.members.first() || await message.guild.members.fetch(args[0]).catch(err => {
+  const user = message.mentions.members.first() || await message.guild.members.fetch(args[0]).catch(error => {
  return;
   });
   message.delete();
