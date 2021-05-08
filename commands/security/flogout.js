@@ -7,7 +7,7 @@ module.exports = {
     maxArgs: 1,
     expectedArgs: '<@user>',
 	guildOnly: true,
-    ownerOnly: 'true',
+    ownerOnly: true,
 	callback: async ({ message, client, args }) => {
 		const Discord = require('discord.js');
   const time = moment();
