@@ -10,6 +10,7 @@ module.exports = {
 	guildOnly: true,
 	ownerOnly: true,
 	cooldown: '5s',
+	testOnly: true,
 	callback: ({ message, args, text, client, prefix, instance, channel }) => {
   message.channel.send('template');
 	},
