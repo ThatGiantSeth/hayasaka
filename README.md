@@ -5,7 +5,7 @@
 
 ## Creators:
 - [Seth](https://github.com/ThatGiantSeth)
-- Michael
+- [Michael](https://github.com/FlipperDoggit)
 
 ## Packages Used:
 - [discord.js](https://discord.js.org/#/)
