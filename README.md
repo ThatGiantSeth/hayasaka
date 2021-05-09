@@ -3,7 +3,7 @@
 # Hayasaka
 > A Discord bot for a private server with the boys
 
-## Developer:
+## Developers:
 - [Seth](https://github.com/ThatGiantSeth)
 - [Michael](https://github.com/FlipperDoggit)
 
