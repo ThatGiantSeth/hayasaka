@@ -5,6 +5,7 @@ module.exports = {
 	description: 'Log out',
 	guildOnly: true,
 	cooldown: '5s',
+	testOnly: true,
 	callback: async ({ message, client }) => {
 		const server = message.guild.id;
 		if (server === '727554812299968582') {
@@ -14,7 +15,7 @@ module.exports = {
 
 	message.delete();
 	client.channels.cache.get('836421516546539561').send(`${author} logged out ${timeFull}`);
-	const role = message.member.guild.roles.cache.find(role => role.id === '836432624037134377');
+	const role = message.member.guild.roles.cache.find(role => role.name === 'Aci');
 	message.member.roles.remove(role);
 		}
 	},

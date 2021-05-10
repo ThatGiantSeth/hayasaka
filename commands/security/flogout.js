@@ -8,6 +8,7 @@ module.exports = {
     expectedArgs: '<@user>',
 	guildOnly: true,
     ownerOnly: true,
+	testOnly: true,
 	callback: async ({ message, client, args }) => {
 		const Discord = require('discord.js');
   const time = moment();
@@ -22,7 +23,7 @@ module.exports = {
 	.setTitle('Security Alert')
 	.setDescription(`${user} was forcefully logged out ${timeFull}`);
 	client.channels.cache.get('836421516546539561').send(embed);
-	const role = message.member.guild.roles.cache.find(role => role.id === '836432624037134377');
+	const role = message.member.guild.roles.cache.find(role => role.name === 'Aci');
 	user.roles.remove(role);
   }
 	},

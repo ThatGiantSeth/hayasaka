@@ -1,4 +1,5 @@
 const moment = require('moment');
+const ms = require('ms');
 require('dotenv').config();
 module.exports = {
 	commands: ['unlock'],
@@ -6,6 +7,7 @@ module.exports = {
 	description: 'Log in',
 	guildOnly: true,
 	cooldown: '5s',
+	testOnly: true,
 	callback: async ({ message, args, client }) => {
 	const server = message.guild.id;
 	if (server === '727554812299968582') {
@@ -26,14 +28,8 @@ module.exports = {
   else if (args[0] === Code) {
 	message.delete();
 	client.channels.cache.get('836421516546539561').send(`${author} logged in ${timeFull}`);
-	const role = message.member.guild.roles.cache.find(role => role.id === '836432624037134377');
+	const role = message.member.guild.roles.cache.find(role => role.name === 'Aci');
 	message.member.roles.add(role);
-	setTimeout(function() {
-		const timeOut = moment();
-		const timeFullOut = timeOut.format('MMMM Do YYYY, h:mm:ss a');
-		message.member.roles.remove(role);
-		client.channels.cache.get('836421516546539561').send(`${author} logged out ${timeFullOut}`);
-	}, 259200000);
   }
 }
 	},
