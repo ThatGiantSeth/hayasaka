@@ -14,6 +14,7 @@
 - [moment](https://momentjs.com)
 - [moment-timezone](https://momentjs.com/timezone/)
 - [mongoose](https://mongoosejs.com)
+- [node-cron](https://www.npmjs.com/package/node-cron)
 
 ## Environment packages:
 - [express, for web server](https://expressjs.com)
