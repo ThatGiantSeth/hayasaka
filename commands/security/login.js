@@ -30,12 +30,6 @@ module.exports = {
 	client.channels.cache.get('836421516546539561').send(`${author} logged in ${timeFull}`);
 	const role = message.member.guild.roles.cache.find(role => role.name === 'Aci');
 	message.member.roles.add(role);
-	setTimeout(async function() {
-		const timeOut = moment();
-		const timeFullOut = timeOut.format('MMMM Do YYYY, h:mm:ss a');
-		message.member.roles.remove(role);
-		client.channels.cache.get('836421516546539561').send(`${author} logged out ${timeFullOut}`);
-	}, ms('3d'));
   }
 }
 	},

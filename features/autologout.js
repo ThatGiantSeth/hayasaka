@@ -1,3 +1,4 @@
+const moment = require('moment');
 module.exports = (client) => {
     client.on('ready', () => {});
     const cron = require('node-cron');
@@ -11,6 +12,9 @@ module.exports = (client) => {
                 member.roles.remove(role);
                 // WARNING: This code will get you rate limited after more than a few members
           });
+          const timeOut = moment();
+           const timeFullOut = timeOut.format('MMMM Do YYYY, h:mm:ss a');
+          client.channels.cache.get('836421516546539561').send(`Everyone was logged out ${timeFullOut}`);
         });
         app.listen(3000);
   };
