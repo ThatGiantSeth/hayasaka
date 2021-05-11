@@ -11,8 +11,8 @@ module.exports = {
 	.setColor('#0099ff')
 	.setTitle('GitHub Link (Click Here)')
 	.setDescription('Bot\'s source code can be found here (no token included sorry hackers).')
-  .setURL('https://github.com/ThatGiantSeth/hayasaka')
-	.setThumbnail('https://i.imgur.com/AxQslRW.jpg')
+	.setURL('https://github.com/ThatGiantSeth/hayasaka')
+	.setThumbnail('https://i.imgur.com/OjYg78u.jpg')
 	.setFooter(`Hayasaka Bot ${version}`, 'https://i.imgur.com/W1lcK9M.gif');
 
   message.channel.send(gitEmbed);
