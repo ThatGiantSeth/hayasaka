@@ -35,6 +35,7 @@ module.exports = {
 		catch (error) {
 			message.reply('There was an error sending the webhook');
 		}
+		message.delete();
 		}
 		else {
 			message.reply('update type must be Major or Minor');
