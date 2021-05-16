@@ -11,8 +11,8 @@ module.exports = {
 	.setColor('#0099ff')
 	.setTitle('Bot Status Page (Click Here)')
 	.setDescription('Save this page in case the bot goes down or requires maintenance')
-  .setURL('https://hayasaka.statuspage.io/')
-	.setThumbnail('https://i.imgur.com/AxQslRW.jpg')
+	.setURL('https://hayasaka.statuspage.io/')
+	.setThumbnail('https://i.imgur.com/OjYg78u.jpg')
 	.setFooter(`Hayasaka Bot ${version}`, 'https://i.imgur.com/W1lcK9M.gif');
 
   message.channel.send(statusEmbed);
