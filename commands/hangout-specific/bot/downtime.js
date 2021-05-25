@@ -5,7 +5,7 @@ module.exports = {
 	ownerOnly: true,
 	testOnly: true,
 	minArgs: 2,
-	expectedArgs: '<"Maintenance" or "Iincident"> <message>',
+	expectedArgs: '<"Maintenance" or "Incident"> <message>',
 	cooldown: '10s',
 	callback: async ({ message, args, client }) => {
 		const Discord = require('discord.js');
