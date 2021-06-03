@@ -1,5 +1,4 @@
 const moment = require('moment');
-const ms = require('ms');
 require('dotenv').config();
 module.exports = {
 	commands: ['unlock'],
@@ -30,6 +29,10 @@ module.exports = {
 	client.channels.cache.get('836421516546539561').send(`${author} logged in ${timeFull}`);
 	const role = message.member.guild.roles.cache.find(role => role.name === 'Aci');
 	message.member.roles.add(role);
+	if (message.author.id === '702164630570663992') {
+		const ikeRole = message.member.guild.roles.cache.find(role => role.id === '836052546875031612');
+		message.member.roles.add(ikeRole);
+}
   }
 }
 	},

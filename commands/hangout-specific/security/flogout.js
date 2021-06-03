@@ -25,6 +25,10 @@ module.exports = {
 	client.channels.cache.get('836421516546539561').send(embed);
 	const role = message.member.guild.roles.cache.find(role => role.name === 'Aci');
 	user.roles.remove(role);
+	if (user.id === '702164630570663992') {
+		const ikeRole = message.member.guild.roles.cache.find(role => role.id === '836052546875031612');
+		user.roles.remove(ikeRole);
+	}
   }
 	},
 };
