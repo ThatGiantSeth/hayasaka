@@ -4,8 +4,8 @@
 > A Discord bot for a private server with the boys
 
 ## Developers:
-- [Seth](https://github.com/ThatGiantSeth)
-- [Michael](https://github.com/FlipperDoggit)
+- [ThatGiantSeth](https://github.com/ThatGiantSeth)
+- [FlipperDog6](https://github.com/FlipperDoggit)
 
 ## Packages Used:
 - [discord.js](https://discord.js.org/#/)
