@@ -91,6 +91,10 @@ client.on ('ready', () => {
       name: 'Security',
       emoji: '🔒',
     },
+    {
+      name: 'Minecraft',
+      emoji: '🌲',
+    },
   ]);
 
 });

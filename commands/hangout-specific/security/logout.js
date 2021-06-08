@@ -17,6 +17,10 @@ module.exports = {
 	client.channels.cache.get('836421516546539561').send(`${author} logged out ${timeFull}`);
 	const role = message.member.guild.roles.cache.find(role => role.name === 'Aci');
 	message.member.roles.remove(role);
+	if (message.author.id === '702164630570663992') {
+		const ikeRole = message.member.guild.roles.cache.find(role => role.name === 'Bot Dev');
+		message.member.roles.remove(ikeRole);
+	}
 		}
 	},
 };
