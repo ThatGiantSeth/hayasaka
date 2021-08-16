@@ -16,6 +16,8 @@ const client = new Discord.Client({
     partials: ['MESSAGE', 'REACTION'],
 });
 
+require('discord-buttons')(client);
+
 client.on ('ready', () => {
     console.log('Bot online!');
         // sets bot status
