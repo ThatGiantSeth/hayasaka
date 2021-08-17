@@ -22,6 +22,6 @@ module.exports = {
 	.setColor('#ff0000')
 	.setTitle('Security Alert')
 	.setDescription(`Everyone was forcefully logged out ${timeFull}`);
-	client.channels.cache.get('836421516546539561').send(embed);
+	client.channels.cache.get('836421516546539561').send({ embeds: [embed] });
 	},
 };

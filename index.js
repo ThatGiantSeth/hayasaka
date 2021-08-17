@@ -8,15 +8,14 @@ app.get('/', (req, res) => res.send('Hayasaka v0.0.10 Beta Webserver Status.... 
 app.listen(port, () => console.log(`Server listening at http://localhost:${port}`));
 // end web server use section
 
-const Discord = require('discord.js');
+const { Client, Intents } = require('discord.js');
 const wokcommands = require('wokcommands');
 require('dotenv').config();
 
-const client = new Discord.Client({
+const client = new Client({
     partials: ['MESSAGE', 'REACTION'],
+    intents: [Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_EMOJIS_AND_STICKERS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MESSAGE_REACTIONS, Intents.FLAGS.GUILD_MESSAGE_TYPING, Intents.FLAGS.DIRECT_MESSAGES, Intents.FLAGS.DIRECT_MESSAGE_REACTIONS, Intents.FLAGS.DIRECT_MESSAGE_TYPING, Intents.FLAGS.GUILD_BANS, Intents.FLAGS.GUILD_INTEGRATIONS, Intents.FLAGS.GUILD_WEBHOOKS],
 });
-
-require('discord-buttons')(client);
 
 client.on ('ready', () => {
     console.log('Bot online!');

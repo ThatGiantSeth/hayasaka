@@ -15,6 +15,6 @@ module.exports = {
 	.setThumbnail('https://i.imgur.com/OjYg78u.jpg')
 	.setFooter(`Hayasaka Bot ${version}`, 'https://i.imgur.com/W1lcK9M.gif');
 
-  message.channel.send(statusEmbed);
+  message.channel.send({ embeds: [statusEmbed] });
 	},
 };

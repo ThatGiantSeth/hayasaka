@@ -26,16 +26,21 @@ module.exports = {
 			const webhooks = await channel.fetchWebhooks();
 			const webhook = webhooks.first();
 
-			await webhook.send('', {
+			await webhook.send({
 				username: 'Hayasaka Information',
 				avatarURL: 'https://i.imgur.com/OjYg78u.jpg',
 				embeds: [embed],
 			});
+			message.delete();
 		}
 		catch (error) {
+			try {
 			message.reply('There was an error sending the webhook');
+			}
+			catch (error) {
+				return;
+			}
 		}
-		message.delete();
 		}
 		else {
 			message.reply('update type must be Major or Minor');
