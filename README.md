@@ -30,6 +30,6 @@ If you really still want to use this bot in your own server, I've created a guid
 A list of commands can be found by typing t.help in the server OR in the bot's DMs. Alternatively there's a (probably incomplete) list of commands [here](https://github.com/ThatGiantSeth/hayasaka/wiki/Commands).
 
 ## Contact
-I'm afraid I can't offer much support for self hosting beyond the guide in the wiki section, as it's far beyond my original scope of a hobby for my server with the boys, but if you come across any errors or other issues with the guide, you can DM me on Discord @ ThatGiantSeth#0002.
+I'm afraid I can't offer much support for self hosting beyond the guide in the wiki section, as it's far beyond my original scope of a hobby for my server with the boys, I may occasionally answer questions in the issues section. No guarantees though.
 
 **Thanks!**
