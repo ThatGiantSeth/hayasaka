@@ -19,17 +19,17 @@ const client = new Client({
 });
 
 client.on ('ready', async () => {
-    console.log('Bot online!');
-        // sets bot status
-        const activities = [
-          'life wasting sim',
-          'best girl!',
-          'the test version!',
-        ];
-        setInterval(()=>{
-          const status = activities[Math.floor(Math.random() * activities.length)];
-          client.user.setPresence({ activities : [ { name : `${status}` }] });
-        }, 10000);
+  console.log('Bot online!');
+      // sets bot status
+      const activities = [
+        'life wasting sim',
+        'best girl!',
+        'the test version!',
+      ];
+      setInterval(()=>{
+        const status = activities[Math.floor(Math.random() * activities.length)];
+        client.user.setPresence({ activities : [ { name : `${status}` }] });
+      }, 10000);
 
     // Used to configure the database connection.
   // These are the default options but you can overwrite them
@@ -40,11 +40,11 @@ client.on ('ready', async () => {
     // If you want to disable built in commands you can add them to this array. Simply uncomment the strings to disable that command.
 
     const disabledDefaultCommands = [
-        'help',
-        // 'command',
+        // 'help',
+        'command',
         'language',
-        // 'prefix',
-        // 'requiredrole',
+        'prefix',
+        'requiredrole',
       ];
 
       // Initialize WOKCommands with specific folders and MongoDB
