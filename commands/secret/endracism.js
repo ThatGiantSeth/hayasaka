@@ -1,16 +1,19 @@
 module.exports = {
-	commands: ['blm', 'blacksquare'],
 	category: 'Other',
 	description: 'BLM :flushed:',
 	cooldown: '5s',
-	execute({ message }) {
+	slash: true,
+	testOnly: true,
+	guildOnly: true,
+	callback({ interaction }) {
+		if (interaction) {
 		const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js');
 		const row = new MessageActionRow()
 		.addComponents(
 			new MessageButton()
 			.setLabel('How You Can Help')
 			.setStyle('LINK')
-			.setURL('https://www.youtube.com/watch?v=iik25wqIuFo'),
+			.setURL('https://bit.ly/3C94bAx'),
 		);
 
 		const embed = new MessageEmbed()
@@ -18,6 +21,7 @@ module.exports = {
 	.setTitle('WE ARE ENDING RACISM :pensive::fist:')
 	.setImage('https://i.imgur.com/m8zd1bC.jpg');
 
-  message.channel.send({ embeds: [embed], components: [row] });
+  interaction.reply({ embeds: [embed], components: [row] });
+		}
 	},
 };

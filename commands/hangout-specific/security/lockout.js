@@ -1,14 +1,15 @@
 const moment = require('moment');
 const Discord = require('discord.js');
 module.exports = {
-	commands: ['lockall', 'alogout'],
 	category: 'Security',
 	description: 'Log out everyone',
 	guildOnly: true,
 	ownerOnly: true,
 	cooldown: '5s',
 	testOnly: true,
-	callback: async ({ client }) => {
+	slash: true,
+	callback: async ({ interaction, client }) => {
+		await interaction.reply({ content: 'Lockdown initiated. All users logged out.', ephemeral: true });
         const guild = client.guilds.cache.find(guild => guild.id === '727554812299968582');
         await guild.members.fetch();
         const role = guild.roles.cache.find(role => role.name === 'Aci');

@@ -1,20 +1,20 @@
 /* eslint-disable no-shadow-restricted-names */
 module.exports = {
-	commands: ['git', 'repository', 'repo'],
 	category: 'Bot',
 	description: 'View the bot\'s GitHub repository',
 	cooldown: '10s',
-	callback: ({ message }) => {
-		const Discord = require('discord.js');
-        const { version } = require('../../config.json');
-		const gitEmbed = new Discord.MessageEmbed()
-	.setColor('#0099ff')
-	.setTitle('GitHub Link (Click Here)')
-	.setDescription('Bot\'s source code can be found here (no token included sorry hackers).')
-	.setURL('https://github.com/ThatGiantSeth/hayasaka')
-	.setThumbnail('https://i.imgur.com/OjYg78u.jpg')
-	.setFooter(`Hayasaka Bot ${version}`, 'https://i.imgur.com/W1lcK9M.gif');
+	slash: true,
+	guildOnly: true,
+	callback: ({ interaction }) => {
+		const { MessageActionRow, MessageButton } = require('discord.js');
+	const row = new MessageActionRow()
+		.addComponents(
+			new MessageButton()
+			.setLabel('GitHub')
+			.setStyle('LINK')
+			.setURL('https://github.com/ThatGiantSeth/hayasaka'),
+		);
 
-  message.channel.send({ embeds: [gitEmbed] });
+  interaction.reply({ content: 'The bot\'s source code can be found here (no token included sorry hackers).', components: [row] });
 	},
 };

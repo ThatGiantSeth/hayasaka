@@ -1,38 +1,43 @@
 module.exports = {
-	commands: ['offline', 'down'],
 	category: 'Bot',
 	description: 'Make a downtime message for the bot.',
 	ownerOnly: true,
 	testOnly: true,
-	minArgs: 2,
-	expectedArgs: '<"Maintenance" or "Incident"> <message>',
+	minArgs: 1,
+	expectedArgs: '<"Maintenance, "Incident" or "Update">',
 	cooldown: '10s',
-	callback: async ({ message, args, client }) => {
+	slash: true,
+	options: [
+		{
+			name: 'type',
+			description: 'What kind of downtime is this?',
+			required: true,
+			type: 3,
+		},
+	],
+	callback: async ({ interaction, args, client }) => {
 		const Discord = require('discord.js');
 		const issueType = args[0];
-		args.shift();
-		const issueMessage = args.join(' ');
-		if (issueType === 'Maintenance' || issueType === 'Incident') {
+		if (issueType === 'Maintenance' || issueType === 'Incident' || issueType === 'Update') {
 		const embed = new Discord.MessageEmbed()
 		.setTitle(`${issueType}`)
-		.setColor('#ff0000')
-		.setDescription(`${issueMessage}\n\nSee status page for details here: https://hayasaka.statuspage.io/`)
+		.setColor('#000000')
+		.setDescription('The bot is currently down for the reason above.\n\nSee status page for details here: https://hayasaka.statuspage.io/')
 		.setFooter('Hayasaka', 'https://i.imgur.com/W1lcK9M.gif');
-		const channel = client.channels.cache.get('840242888935473242');
 		try {
-			const webhooks = await channel.fetchWebhooks();
-			const webhook = webhooks.first();
+			const webhook = await client.fetchWebhook('818234228294287370', 'UE6AGXXv5jDjIgwyIecP-wiZO_PFLpl5tvDIDWuWOiHwGnz-OhY3s8f6QGut14gLBm1J');
 
 			await webhook.send({
 				username: 'Hayasaka Information',
 				avatarURL: 'https://i.imgur.com/OjYg78u.jpg',
 				embeds: [embed],
 			});
-			message.delete();
+			await interaction.reply({ content: 'Message successfully sent.', ephemeral: true });
 		}
 		catch (error) {
 			try {
-			message.reply('There was an error sending the webhook');
+			interaction.reply({ content: 'There was an error sending the webhook', ephemeral: true });
+			console.log(error);
 			}
 			catch (error) {
 				return;
@@ -40,7 +45,7 @@ module.exports = {
 		}
 		}
 		else {
-			message.reply('issue type must be Maintenance or Incident');
+			interaction.reply({ content: 'Issue type must be Maintenance or Incident', ephemeral: true });
 		}
 	},
 };

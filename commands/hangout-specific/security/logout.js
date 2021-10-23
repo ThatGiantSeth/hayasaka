@@ -1,18 +1,18 @@
 const moment = require('moment');
 module.exports = {
-	commands: ['lock'],
 	category: 'Security',
 	description: 'Log out',
 	guildOnly: true,
 	cooldown: '10s',
+	slash: true,
 	testOnly: true,
-	callback: async ({ message, client }) => {
-		const server = message.guild.id;
+	callback: async ({ interaction, client }) => {
+		const server = interaction.guild.id;
 		if (server === '727554812299968582') {
   const time = moment();
   const timeFull = time.format('MMMM Do YYYY, h:mm:ss a');
-  const author = message.author.username;
-  const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js');
+  const author = interaction.user.username;
+  const { MessageActionRow, MessageButton } = require('discord.js');
   const row = new MessageActionRow()
   .addComponents(
 	new MessageButton()
@@ -24,24 +24,16 @@ module.exports = {
 	.setLabel('No')
 	.setStyle('DANGER'),
   );
- const buttonmsg = await message.reply({ content: 'Are you sure you want to log out?', components: [row] });
+ await interaction.reply({ content: 'Are you sure you want to log out?', components: [row], ephemeral: true });
 
- const aFilter = i=>i.user.id === message.author.id;
+ const aFilter = i=>i.user.id === interaction.user.id;
 
- const collector = buttonmsg.channel.createMessageComponentCollector({ filter: aFilter, time: 30000 });
-
-try {
- await message.delete();
-}
-catch (error) {
-	return;
-}
+ const collector = interaction.channel.createMessageComponentCollector({ filter: aFilter, time: 30000 });
 
  collector.on('collect', async i => {
 	if (i.customId === 'no') {
 		try {
-		await buttonmsg.edit({ content: 'Logout canceled.', components: [] });
-		setTimeout(function() {buttonmsg.delete(); }, 3000);
+		await interaction.editReply({ content: 'Logout canceled.', components: [] });
 		}
 		catch (error) {
 		return;
@@ -49,18 +41,17 @@ catch (error) {
 	}
 	else if (i.customId === 'yes') {
 		try {
-			await buttonmsg.edit({ content: 'Logged out.', components: [] });
-			setTimeout(function() {buttonmsg.delete(); }, 3000);
+			await interaction.editReply({ content: 'Logged out.', components: [] });
 		}
 		catch (error) {
 			return;
 		}
 		client.channels.cache.get('836421516546539561').send(`${author} logged out ${timeFull}`);
-		const role = message.member.guild.roles.cache.find(role => role.name === 'Aci');
-		message.member.roles.remove(role);
-		if (message.author.id === '702164630570663992') {
-			const ikeRole = message.member.guild.roles.cache.find(role => role.name === 'Bot Dev');
-			message.member.roles.remove(ikeRole);
+		const role = interaction.member.guild.roles.cache.find(role => role.name === 'Aci');
+		interaction.member.roles.remove(role);
+		if (interaction.user.id === '702164630570663992') {
+			const ikeRole = interaction.member.guild.roles.cache.find(role => role.name === 'Bot Dev');
+			interaction.member.roles.remove(ikeRole);
 		}
 	}
 	else {

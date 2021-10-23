@@ -6,36 +6,56 @@ module.exports = {
 	ownerOnly: true,
 	testOnly: true,
 	minArgs: 3,
-	expectedArgs: '<"Major" or "Minor"> <version> <message>',
+	expectedArgs: '<"Major" or "Minor"> <version> <changelog link>',
 	cooldown: '10s',
-	callback: async ({ message, args, client }) => {
+	guildOnly: true,
+	slash: true,
+	options: [
+		{
+			name: 'type',
+			description: 'Major or Minor update type.',
+			required: true,
+			type: 3,
+		},
+		{
+			name: 'version',
+			description: 'Update version in x.x.x format',
+			required: true,
+			type: 3,
+		},
+		{
+			name: 'link',
+			description: 'Link to changelog.',
+			required: true,
+			type: 3,
+		},
+	],
+	callback: async ({ interaction, args, client }) => {
 		const Discord = require('discord.js');
 		const updateType = args[0];
 		args.shift();
 		const updateVersion = args[0];
 		args.shift();
-		const updateMessage = args.join(' ');
+		const changeLink = args[0];
 		if (updateType === 'Minor' || updateType === 'Major') {
 		const embed = new Discord.MessageEmbed()
 		.setTitle(`${updateType} Update v${updateVersion}`)
 		.setColor('#000000')
-		.setDescription(`${updateMessage}`)
+		.setDescription(`An update has been completed.\n\nSee this link for details: ${changeLink}`)
 		.setFooter('Hayasaka', 'https://i.imgur.com/W1lcK9M.gif');
-		const channel = client.channels.cache.get('840242888935473242');
 		try {
-			const webhooks = await channel.fetchWebhooks();
-			const webhook = webhooks.first();
+			const webhook = await client.fetchWebhook('818234228294287370', 'UE6AGXXv5jDjIgwyIecP-wiZO_PFLpl5tvDIDWuWOiHwGnz-OhY3s8f6QGut14gLBm1J');
 
 			await webhook.send({
 				username: 'Hayasaka Information',
 				avatarURL: 'https://i.imgur.com/OjYg78u.jpg',
 				embeds: [embed],
 			});
-			message.delete();
+			await interaction.reply({ content: 'Message successfully sent.', ephemeral: true });
 		}
 		catch (error) {
 			try {
-			message.reply('There was an error sending the webhook');
+			interaction.reply({ content: 'There was an error sending the webhook', ephemeral: true });
 			}
 			catch (error) {
 				return;
@@ -43,7 +63,7 @@ module.exports = {
 		}
 		}
 		else {
-			message.reply('update type must be Major or Minor');
+			interaction.reply({ content: 'Update type must be Major or Minor', ephemeral: true });
 		}
 	},
 };
