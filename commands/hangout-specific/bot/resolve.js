@@ -1,82 +1,74 @@
 module.exports = {
-	commands: ['online', 'up'],
 	category: 'Bot',
 	description: 'Make an issue resolved message for the bot.',
 	ownerOnly: true,
 	testOnly: true,
-	minArgs: 2,
-	expectedArgs: '<"Maintenance", "Incident", or "Update"> <message>',
+	minArgs: 1,
+	maxArgs: 1,
+	expectedArgs: '<"Maintenance", "Incident", or "Update">',
 	cooldown: '10s',
-	callback: async ({ message, args, client }) => {
+	guildOnly: true,
+	slash: true,
+	options: [
+		{
+			name: 'type',
+			description: 'Incident type',
+			required: true,
+			type: 3,
+		},
+	],
+	callback: async ({ interaction, args, client }) => {
 		const Discord = require('discord.js');
 		const issueType = args[0];
-		args.shift();
-		const issueMessage = args.join(' ');
-		if (issueType === 'Maintenance') {
+		if (issueType === 'Maintenance' || issueType === 'Update') {
 		const embed = new Discord.MessageEmbed()
-		.setTitle('Maintenance Completed')
+		.setTitle('Maintenance/Update Completed')
 		.setColor('#00ff47')
-		.setDescription(`${issueMessage}\n\nFor information about downtimes, visit the status page here: https://hayasaka.statuspage.io/`)
+		.setDescription('The maintenance/update is complete and the bot is now online.\n\nFor information about downtimes, visit the status page here: https://hayasaka.statuspage.io/')
 		.setFooter('Hayasaka', 'https://i.imgur.com/W1lcK9M.gif');
-		const channel = client.channels.cache.get('840242888935473242');
 		try {
-			const webhooks = await channel.fetchWebhooks();
-			const webhook = webhooks.first();
+			const webhook = await client.fetchWebhook('818234228294287370', 'UE6AGXXv5jDjIgwyIecP-wiZO_PFLpl5tvDIDWuWOiHwGnz-OhY3s8f6QGut14gLBm1J');
 
-			await webhook.send('', {
+			await webhook.send({
 				username: 'Hayasaka Information',
 				avatarURL: 'https://i.imgur.com/OjYg78u.jpg',
 				embeds: [embed],
 			});
+			await interaction.reply({ content: 'Message successfully sent.', ephemeral: true });
 		}
 		catch (error) {
-			message.reply('There was an error sending the webhook');
+			try {
+			interaction.reply({ content: 'There was an error sending the webhook', ephemeral: true });
+			}
+			catch (error) {
+				return;
+			}
 		}
-		message.delete();
 		}
 		if (issueType === 'Incident') {
 			const embed = new Discord.MessageEmbed()
 			.setTitle('Incident Resolved')
 			.setColor('#00ff47')
-			.setDescription(`${issueMessage}\n\nFor information about downtimes, visit the status page here: https://hayasaka.statuspage.io/`)
+			.setDescription('The incident is resolved and the bot is now online.\n\nFor information about downtimes, visit the status page here: https://hayasaka.statuspage.io/')
 			.setFooter('Hayasaka', 'https://i.imgur.com/W1lcK9M.gif');
-			const channel = client.channels.cache.get('840242888935473242');
 			try {
-				const webhooks = await channel.fetchWebhooks();
-				const webhook = webhooks.first();
+				const webhook = await client.fetchWebhook('818234228294287370', 'UE6AGXXv5jDjIgwyIecP-wiZO_PFLpl5tvDIDWuWOiHwGnz-OhY3s8f6QGut14gLBm1J');
 
-				await webhook.send('', {
+				await webhook.send({
 					username: 'Hayasaka Information',
 					avatarURL: 'https://i.imgur.com/OjYg78u.jpg',
 					embeds: [embed],
 				});
+				await interaction.reply({ content: 'Message successfully sent.', ephemeral: true });
 			}
 			catch (error) {
-				message.reply('There was an error sending the webhook');
+				try {
+				interaction.reply({ content: 'There was an error sending the webhook', ephemeral: true });
+				}
+				catch (error) {
+					return;
+				}
 			}
-			message.delete();
-		}
-		if (issueType === 'Update') {
-			const embed = new Discord.MessageEmbed()
-			.setTitle('Incident Update')
-			.setColor('#0070ff')
-			.setDescription(`${issueMessage}\n\nFor information about downtimes, visit the status page here: https://hayasaka.statuspage.io/`)
-			.setFooter('Hayasaka', 'https://i.imgur.com/W1lcK9M.gif');
-			const channel = client.channels.cache.get('840242888935473242');
-			try {
-				const webhooks = await channel.fetchWebhooks();
-				const webhook = webhooks.first();
-
-				await webhook.send('', {
-					username: 'Hayasaka Information',
-					avatarURL: 'https://i.imgur.com/OjYg78u.jpg',
-					embeds: [embed],
-				});
-			}
-			catch (error) {
-				message.reply('There was an error sending the webhook');
-			}
-			message.delete();
 		}
 	},
 };

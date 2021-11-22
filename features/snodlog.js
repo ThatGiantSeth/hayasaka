@@ -1,5 +1,5 @@
 module.exports = (client) => {
-    client.on('message', (message) => {
+    client.on('messageCreate', (message) => {
         const Discord = require('discord.js');
         if (message.author.id === '250671142233309186') {
             const embed2 = new Discord.MessageEmbed()
@@ -7,7 +7,7 @@ module.exports = (client) => {
 	.setTitle('Message from Kai (UID: 250671142233309186)')
   .addField('Link to message', message.url, true)
 	.setDescription(message.content);
-      client.channels.cache.get('831403369091301396').send(embed2);
+      client.channels.cache.get('831403369091301396').send({ embeds: [embed2] });
         }
     });
   };
@@ -15,5 +15,5 @@ module.exports = (client) => {
   module.exports.config = {
     displayName: 'snodlog',
     dbName: 'snodlog',
-    loadDBFirst: true,
   };
+  // 250671142233309186

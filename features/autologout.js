@@ -14,7 +14,7 @@ module.exports = (client) => {
           });
           const timeOut = moment();
            const timeFullOut = timeOut.format('MMMM Do YYYY, h:mm:ss a');
-          client.channels.cache.get('836421516546539561').send(`Everyone was logged out ${timeFullOut}`);
+          client.channels.cache.get('836421516546539561').send({ content: `Everyone was logged out ${timeFullOut}` });
         });
         app.listen(3000);
   };
@@ -23,5 +23,4 @@ module.exports = (client) => {
   module.exports.config = {
     displayName: 'autologout',
     dbName: 'autologout',
-    loadDBFirst: true,
   };

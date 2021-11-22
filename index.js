@@ -3,67 +3,64 @@ const express = require('express');
 const app = express();
 const port = 5523;
 
-app.get('/', (req, res) => res.send('Hayasaka v0.0.10 Beta Webserver Status.... is online I guess! Congratulations??'),
+app.get('/', (req, res) => res.send('Hayasaka v1.0 Beta Webserver Status.... is online I guess! Congratulations??'),
 );
 app.listen(port, () => console.log(`Server listening at http://localhost:${port}`));
 // end web server use section
 
-const Discord = require('discord.js');
+const { Client, Intents } = require('discord.js');
 const wokcommands = require('wokcommands');
 require('dotenv').config();
+const path = require('path');
 
-const client = new Discord.Client({
+const client = new Client({
     partials: ['MESSAGE', 'REACTION'],
+    intents: [Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_EMOJIS_AND_STICKERS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MESSAGE_REACTIONS, Intents.FLAGS.GUILD_MESSAGE_TYPING, Intents.FLAGS.DIRECT_MESSAGES, Intents.FLAGS.DIRECT_MESSAGE_REACTIONS, Intents.FLAGS.DIRECT_MESSAGE_TYPING, Intents.FLAGS.GUILD_BANS, Intents.FLAGS.GUILD_INTEGRATIONS, Intents.FLAGS.GUILD_WEBHOOKS],
 });
 
-client.on ('ready', () => {
-    console.log('Bot online!');
-        // sets bot status
-        client.user.setPresence({
-          status: 'available',
-          activity: {
-              name: 'my life waste away',
-              type: 'WATCHING',
-          },
-      });
-
-    // See the "Language Support" section of this documentation
-  // An empty string = ignored
-  const messagesPath = './messages.json';
+client.on ('ready', async () => {
+  console.log('Bot online!');
+      // sets bot status
+      const activities = [
+        'life wasting sim',
+        'best girl!',
+        'the test version!',
+      ];
+      setInterval(()=>{
+        const status = activities[Math.floor(Math.random() * activities.length)];
+        client.user.setPresence({ activities : [ { name : `${status}` }] });
+      }, 10000);
 
     // Used to configure the database connection.
   // These are the default options but you can overwrite them
   const dbOptions = {
     keepAlive: true,
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false,
   };
 
     // If you want to disable built in commands you can add them to this array. Simply uncomment the strings to disable that command.
 
     const disabledDefaultCommands = [
         // 'help',
-        // 'command',
+        'command',
         'language',
-        // 'prefix',
-        // 'requiredrole',
+        'prefix',
+        'requiredrole',
       ];
 
       // Initialize WOKCommands with specific folders and MongoDB
   new wokcommands(client, {
-    commandsDir: 'commands',
-    featureDir: 'features',
-    messagesPath,
+    commandsDir: path.join(__dirname, 'commands'),
+    featuresDir: path.join(__dirname, 'features'),
+    messagesPath: path.resolve('./messages.json'),
+    delErrMsgCooldown: -1,
     showWarns: true,
-    // ^^^ Show start up warnings
     dbOptions,
     disabledDefaultCommands,
+    mongoUri: process.env.MONGO_URI,
     testServers: ['819442264043946004', '727554812299968582'],
+    botOwners: (['411994450370232321', '702164630570663992']),
+    ephemeral: true,
   })
-  .setBotOwner(['411994450370232321', '702164630570663992'])
-  // Set your MongoDB connection path
-  .setMongoPath(process.env.MONGO_URI)
   // Set the default prefix for your bot, it is ! by default
   .setDefaultPrefix('tt.')
   // Set the embed color for your bot. The default help menu will use this. This hex value can be a string too
