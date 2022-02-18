@@ -7,6 +7,7 @@ module.exports = {
 	expectedArgs: '<"Maintenance, "Incident" or "Update">',
 	cooldown: '10s',
 	slash: true,
+	guildOnly: true,
 	options: [
 		{
 			name: 'type',
